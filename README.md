@@ -12,7 +12,7 @@ OpenClash / Mihomo 规则仓库。
 https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geosite_openai.mrs   # behavior: domain, format: mrs
 https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/zdy/Globe2.list          # behavior: classical, format: text
 ```
-zdy 规则在 rules 中放在相关 mrs 规则之前，优先匹配。
+命名约定：公共规则 `服务名 / Domain`（或 `/ IP`）→ `mrs/`（anchor `*domain` / `*ip`，format mrs）；仅自定义条目 `服务名_zdy / Domain` → `zdy/*.list`（anchor `*class`）。`_zdy` 在 rule-providers 和 rules 中都排在对应 mrs 之前（如 `Apple_zdy` → `Apple`，`Crypto_zdy` → `Crypto`，`Globe_zdy`/`Proxy_zdy` → `Globe`）。公共规则不得写成 list，也不再使用 `clash/` 目录。
 
 ## Provider 映射
 | rule-provider | 文件 |
@@ -64,15 +64,15 @@ zdy 规则在 rules 中放在相关 mrs 规则之前，优先匹配。
 | `China / Domain` | `mrs/geosite_cn.mrs` |
 | `China / IP` | `mrs/geoip_cn.mrs` |
 | `Globe / Domain` | `mrs/geosite_geolocation-not-cn.mrs` |
-| `Globe2 / Domain` | `zdy/Globe2.list` |
-| `Dev-GitHub / Domain` | `zdy/dev.list` |
-| `UltraMobile / Domain` | `zdy/ultramobile.list` |
+| `Globe_zdy / Domain` | `zdy/Globe2.list` |
+| `Dev-GitHub_zdy / Domain` | `zdy/dev.list` |
+| `UltraMobile_zdy / Domain` | `zdy/ultramobile.list` |
 | `Crypto_zdy / Domain` | `zdy/crypto.list` |
-| `TEST / Domain` | `zdy/Check.list` |
-| `Meta AI / Domain` | `zdy/MetaAi.list` |
-| `Copilot / Domain` | `zdy/Copilot.list` |
-| `Apple-Custome / Domain` | `zdy/Apple.list` |
-| `Crunchyroll / Domain` | `zdy/Crunchyroll.list` |
-| `Popcorn / Domain` | `zdy/Popcorn.list` |
-| `Direct / Domain` | `zdy/Direct.list` |
-| `Proxy / Domain` | `zdy/Proxy.list` |
+| `TEST_zdy / Domain` | `zdy/Check.list` |
+| `Meta AI_zdy / Domain` | `zdy/MetaAi.list` |
+| `Copilot_zdy / Domain` | `zdy/Copilot.list` |
+| `Apple_zdy / Domain` | `zdy/Apple.list` |
+| `Crunchyroll_zdy / Domain` | `zdy/Crunchyroll.list` |
+| `Popcorn_zdy / Domain` | `zdy/Popcorn.list` |
+| `Direct_zdy / Domain` | `zdy/Direct.list` |
+| `Proxy_zdy / Domain` | `zdy/Proxy.list` |
