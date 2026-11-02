@@ -20,11 +20,7 @@ url: https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/hea
 ## 文件与上游
 | 文件 | 方式 | 上游 |
 |---|---|---|
-| `clash/zdy_Globe2.list` | raw | https://raw.githubusercontent.com/luowenfu/ios_rule_script/refs/heads/master/lwf_zdy/rules/Globe2.list |
-| `clash/zdy_dev.list` | raw | https://raw.githubusercontent.com/luowenfu/ios_rule_script/refs/heads/master/lwf_zdy/rules/dev.list |
-| `clash/zdy_ultramobile.list` | raw | https://raw.githubusercontent.com/luowenfu/ios_rule_script/refs/heads/master/lwf_zdy/rules/ultramobile.list |
 | `clash/Crypto.list` | raw | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Crypto/Crypto.list |
-| `clash/zdy_crypto.list` | raw | https://raw.githubusercontent.com/luowenfu/ios_rule_script/refs/heads/master/lwf_zdy/rules/crypto.list |
 | `clash/PrivateTracker.list` | raw | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.list |
 | `clash/Check.list` | raw | https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list |
 | `clash/ChatGPT.list` | raw | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list |
@@ -79,3 +75,6 @@ url: https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/hea
 | `clash/Wise.list` | convert-geosite | https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/wise.list |
 | `clash/Proxy.list` | raw | https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Proxy.list |
 | `clash/Global.list` | raw | https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list |
+
+
+> 自用 `clash/zdy_*.list`（zdy_crypto / zdy_Globe2 / zdy_dev / zdy_ultramobile）只在本仓直接修改，不再从旧仓 luowenfu/ios_rule_script 同步。

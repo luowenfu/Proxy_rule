@@ -1,22 +1,6 @@
 {
-  "zdy_Globe2.list": {
-    "url": "https://raw.githubusercontent.com/luowenfu/ios_rule_script/refs/heads/master/lwf_zdy/rules/Globe2.list",
-    "mode": "raw"
-  },
-  "zdy_dev.list": {
-    "url": "https://raw.githubusercontent.com/luowenfu/ios_rule_script/refs/heads/master/lwf_zdy/rules/dev.list",
-    "mode": "raw"
-  },
-  "zdy_ultramobile.list": {
-    "url": "https://raw.githubusercontent.com/luowenfu/ios_rule_script/refs/heads/master/lwf_zdy/rules/ultramobile.list",
-    "mode": "raw"
-  },
   "Crypto.list": {
     "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Crypto/Crypto.list",
-    "mode": "raw"
-  },
-  "zdy_crypto.list": {
-    "url": "https://raw.githubusercontent.com/luowenfu/ios_rule_script/refs/heads/master/lwf_zdy/rules/crypto.list",
     "mode": "raw"
   },
   "PrivateTracker.list": {
