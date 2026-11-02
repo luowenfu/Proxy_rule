@@ -1,32 +1,25 @@
 #!/usr/bin/env python3
-"""按 upstream.json 同步上游；clash/ 与 upstream-snapshots/ 不一致（用户改过）的文件跳过，以本地为准。"""
-import json, os, sys, urllib.request
-up = json.load(open('upstream.json', encoding='utf-8'))
-def get(u):
-    req = urllib.request.Request(u, headers={'User-Agent': 'sync'})
-    return urllib.request.urlopen(req, timeout=60).read()
-def conv(raw, kind):
-    out = []
-    for l in raw.decode().splitlines():
-        l = l.strip()
-        if not l or l.startswith('#'): continue
-        if kind == 'geoip': out.append(('IP-CIDR6,' if ':' in l else 'IP-CIDR,') + l + ',no-resolve')
-        elif l.startswith('+.'): out.append('DOMAIN-SUFFIX,' + l[2:])
-        elif l.startswith('.'): out.append('DOMAIN-SUFFIX,' + l[1:])
-        else: out.append('DOMAIN,' + l)
-    return ('# converted from %s\n' % u + '\n'.join(out) + '\n').encode()
-for fn, i in up.items():
-    u = i['url']; cf = 'clash/' + fn; sf = 'upstream-snapshots/' + fn
+"""每 3 天从 MetaCubeX/meta-rules-dat (meta 分支) 同步 mrs/ 下的 .mrs。
+冲突策略：若本地文件与 upstream-snapshots/ 中上次同步快照不同（说明本地改过），则保留本地、跳过。
+zdy/ 为自定义 .list，不参与同步。"""
+import json, os, urllib.request, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+up = json.load(open(os.path.join(ROOT, "upstream.json"), encoding="utf-8"))
+snapdir = os.path.join(ROOT, "upstream-snapshots")
+fail = 0
+for rel, url in up.items():
+    dst = os.path.join(ROOT, rel); snap = os.path.join(snapdir, rel)
     try:
-        data = get(u)
-        if i['mode'].startswith('convert-'): data = conv(data, i['mode'][8:])
+        data = urllib.request.urlopen(url, timeout=60).read()
     except Exception as e:
-        print('FETCH FAIL', fn, e); continue
-    local = open(cf, 'rb').read() if os.path.exists(cf) else None
-    snap = open(sf, 'rb').read() if os.path.exists(sf) else None
-    if local is not None and snap is not None and local != snap:
-        print('SKIP (本地已修改)', fn)
-        open(sf, 'wb').write(data) if False else None
-        continue
-    open(cf, 'wb').write(data); open(sf, 'wb').write(data)
-    print('OK', fn)
+        print("FAIL", rel, e); fail += 1; continue
+    if not data:
+        print("EMPTY", rel); fail += 1; continue
+    local = open(dst, "rb").read() if os.path.exists(dst) else None
+    old = open(snap, "rb").read() if os.path.exists(snap) else None
+    if local is not None and old is not None and local != old:
+        print("KEEP-LOCAL", rel)
+    elif local != data:
+        os.makedirs(os.path.dirname(dst), exist_ok=True); open(dst, "wb").write(data); print("UPDATE", rel)
+    os.makedirs(os.path.dirname(snap), exist_ok=True); open(snap, "wb").write(data)
+sys.exit(1 if fail == len(up) else 0)

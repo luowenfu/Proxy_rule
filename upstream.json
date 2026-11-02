@@ -1,222 +1,49 @@
 {
-  "Crypto.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Crypto/Crypto.list",
-    "mode": "raw"
-  },
-  "PrivateTracker.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.list",
-    "mode": "raw"
-  },
-  "Check.list": {
-    "url": "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list",
-    "mode": "raw"
-  },
-  "ChatGPT.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list",
-    "mode": "raw"
-  },
-  "Claude.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.list",
-    "mode": "raw"
-  },
-  "MetaAi.list": {
-    "url": "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/MetaAi.list",
-    "mode": "raw"
-  },
-  "Perplexity.list": {
-    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/perplexity.list",
-    "mode": "convert-geosite"
-  },
-  "Copilot.list": {
-    "url": "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Copilot.list",
-    "mode": "raw"
-  },
-  "Gemini.list": {
-    "url": "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Gemini.list",
-    "mode": "raw"
-  },
-  "Telegram.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list",
-    "mode": "raw"
-  },
-  "Telegram_IP.list": {
-    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.list",
-    "mode": "convert-geoip"
-  },
-  "Twitter.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.list",
-    "mode": "raw"
-  },
-  "Whatsapp.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Whatsapp/Whatsapp.list",
-    "mode": "raw"
-  },
-  "Facebook.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.list",
-    "mode": "raw"
-  },
-  "Instagram.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Instagram/Instagram.list",
-    "mode": "raw"
-  },
-  "Amazon.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Amazon/Amazon.list",
-    "mode": "raw"
-  },
-  "Apple_CN.list": {
-    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.list",
-    "mode": "convert-geosite"
-  },
-  "Apple.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.list",
-    "mode": "raw"
-  },
-  "list_Apple.list": {
-    "url": "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Apple.list",
-    "mode": "raw"
-  },
-  "Microsoft.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.list",
-    "mode": "raw"
-  },
-  "TikTok.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.list",
-    "mode": "raw"
-  },
-  "Netflix.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.list",
-    "mode": "raw"
-  },
-  "Netflix_IP.list": {
-    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.list",
-    "mode": "convert-geoip"
-  },
-  "Disney.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.list",
-    "mode": "raw"
-  },
-  "HBO.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HBO/HBO.list",
-    "mode": "raw"
-  },
-  "Spotify.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.list",
-    "mode": "raw"
-  },
-  "Steam.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.list",
-    "mode": "raw"
-  },
-  "Epic.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list",
-    "mode": "raw"
-  },
-  "EA.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list",
-    "mode": "raw"
-  },
-  "Blizzard.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Blizzard/Blizzard.list",
-    "mode": "raw"
-  },
-  "UBI.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/UBI/UBI.list",
-    "mode": "raw"
-  },
-  "PlayStation.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PlayStation/PlayStation.list",
-    "mode": "raw"
-  },
-  "Nintendo.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.list",
-    "mode": "raw"
-  },
-  "Adobe.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Adobe/Adobe.list",
-    "mode": "raw"
-  },
-  "Nvidia.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Nvidia/Nvidia.list",
-    "mode": "raw"
-  },
-  "Crunchyroll.list": {
-    "url": "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Crunchyroll.list",
-    "mode": "raw"
-  },
-  "Reddit.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Reddit/Reddit.list",
-    "mode": "raw"
-  },
-  "Groq.list": {
-    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/groq.list",
-    "mode": "convert-geosite"
-  },
-  "Grok.list": {
-    "url": "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Grok.list",
-    "mode": "raw"
-  },
-  "Popcorn.list": {
-    "url": "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Popcorn.list",
-    "mode": "raw"
-  },
-  "Direct.list": {
-    "url": "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Direct.list",
-    "mode": "raw"
-  },
-  "PayPal.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PayPal/PayPal.list",
-    "mode": "raw"
-  },
-  "eBay.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/eBay/eBay.list",
-    "mode": "raw"
-  },
-  "Private.mrs": {
-    "url": "https://raw.githubusercontent.com/metacubex/meta-rules-dat/meta/geo/geosite/private.mrs",
-    "mode": "raw"
-  },
-  "China_Domain.mrs": {
-    "url": "https://raw.githubusercontent.com/metacubex/meta-rules-dat/meta/geo/geosite/cn.mrs",
-    "mode": "raw"
-  },
-  "China_IP.mrs": {
-    "url": "https://raw.githubusercontent.com/metacubex/meta-rules-dat/meta/geo/geoip/cn.mrs",
-    "mode": "raw"
-  },
-  "YouTube.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTube/YouTube.list",
-    "mode": "raw"
-  },
-  "Google.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.list",
-    "mode": "raw"
-  },
-  "Google_IP.list": {
-    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.list",
-    "mode": "convert-geoip"
-  },
-  "BiliBili.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.list",
-    "mode": "raw"
-  },
-  "Synology.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Synology/Synology.list",
-    "mode": "raw"
-  },
-  "Cursor.list": {
-    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cursor.list",
-    "mode": "convert-geosite"
-  },
-  "Wise.list": {
-    "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/wise.list",
-    "mode": "convert-geosite"
-  },
-  "Proxy.list": {
-    "url": "https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Proxy.list",
-    "mode": "raw"
-  },
-  "Global.list": {
-    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list",
-    "mode": "raw"
-  }
+  "mrs/geoip_cn.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs",
+  "mrs/geoip_google.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs",
+  "mrs/geoip_netflix.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs",
+  "mrs/geoip_telegram.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs",
+  "mrs/geosite_adobe.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/adobe.mrs",
+  "mrs/geosite_amazon.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/amazon.mrs",
+  "mrs/geosite_anthropic.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/anthropic.mrs",
+  "mrs/geosite_apple-cn.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple-cn.mrs",
+  "mrs/geosite_apple.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs",
+  "mrs/geosite_bilibili.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.mrs",
+  "mrs/geosite_blizzard.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/blizzard.mrs",
+  "mrs/geosite_category-cryptocurrency.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-cryptocurrency.mrs",
+  "mrs/geosite_category-pt.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-pt.mrs",
+  "mrs/geosite_cn.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs",
+  "mrs/geosite_cursor.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cursor.mrs",
+  "mrs/geosite_disney.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/disney.mrs",
+  "mrs/geosite_ea.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ea.mrs",
+  "mrs/geosite_ebay.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ebay.mrs",
+  "mrs/geosite_epicgames.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/epicgames.mrs",
+  "mrs/geosite_facebook.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/facebook.mrs",
+  "mrs/geosite_geolocation-not-cn.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs",
+  "mrs/geosite_google-gemini.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.mrs",
+  "mrs/geosite_google.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs",
+  "mrs/geosite_groq.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/groq.mrs",
+  "mrs/geosite_hbo.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/hbo.mrs",
+  "mrs/geosite_instagram.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/instagram.mrs",
+  "mrs/geosite_microsoft.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs",
+  "mrs/geosite_netflix.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs",
+  "mrs/geosite_nintendo.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/nintendo.mrs",
+  "mrs/geosite_nvidia.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/nvidia.mrs",
+  "mrs/geosite_openai.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs",
+  "mrs/geosite_paypal.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs",
+  "mrs/geosite_perplexity.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/perplexity.mrs",
+  "mrs/geosite_playstation.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/playstation.mrs",
+  "mrs/geosite_private.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs",
+  "mrs/geosite_reddit.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/reddit.mrs",
+  "mrs/geosite_spotify.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs",
+  "mrs/geosite_steam.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs",
+  "mrs/geosite_synology.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/synology.mrs",
+  "mrs/geosite_telegram.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs",
+  "mrs/geosite_tiktok.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs",
+  "mrs/geosite_ubisoft.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ubisoft.mrs",
+  "mrs/geosite_whatsapp.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/whatsapp.mrs",
+  "mrs/geosite_wise.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/wise.mrs",
+  "mrs/geosite_x.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs",
+  "mrs/geosite_xai.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/xai.mrs",
+  "mrs/geosite_youtube.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"
 }

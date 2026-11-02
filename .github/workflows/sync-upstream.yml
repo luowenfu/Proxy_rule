@@ -1,4 +1,4 @@
-name: Sync upstream rules
+name: Sync meta-rules-dat mrs
 on:
   schedule:
     - cron: '0 20 */3 * *'
@@ -17,6 +17,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A clash upstream-snapshots
-          git diff --cached --quiet || git commit -m "chore: sync upstream rules $(date -u +%F)"
+          git add -A mrs upstream-snapshots
+          git diff --cached --quiet || git commit -m "chore: sync meta-rules-dat mrs $(date -u +%F)"
           git push
