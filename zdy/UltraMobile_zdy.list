@@ -1,0 +1,4 @@
+# UltraMobile_zdy: 旧规则 − meta geosite(无对应，全量)
+# 来源: https://raw.githubusercontent.com/luowenfu/ios_rule_script/master/lwf_zdy/rules/ultramobile.list
+DOMAIN-SUFFIX,ultramobile.com
+DOMAIN-SUFFIX,ultra.me

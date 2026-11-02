@@ -1,3 +1,5 @@
+# Dev-GitHub_zdy: 旧规则 − meta geosite/github
+# 来源: https://raw.githubusercontent.com/luowenfu/ios_rule_script/master/lwf_zdy/rules/dev.list
 DOMAIN-SUFFIX,01.org
 DOMAIN-SUFFIX,accountkit.com
 DOMAIN-SUFFIX,acpica.com
@@ -27,7 +29,6 @@ DOMAIN-SUFFIX,archlinuxarm.org
 DOMAIN-SUFFIX,archlinuxcn.org
 DOMAIN-SUFFIX,artixlinux.org
 DOMAIN-SUFFIX,askubuntu.com
-DOMAIN-SUFFIX,atom.io
 DOMAIN-SUFFIX,atscaleconference.com
 DOMAIN-SUFFIX,azurecr.io
 DOMAIN-SUFFIX,badgen.net
@@ -57,13 +58,11 @@ DOMAIN-SUFFIX,codeberg.org
 DOMAIN-SUFFIX,codeberg.page
 DOMAIN-SUFFIX,codeforaliving.io
 DOMAIN-SUFFIX,codethemicrobit.com
-DOMAIN-SUFFIX,collector.github.com
 DOMAIN-SUFFIX,compass.is
 DOMAIN-SUFFIX,componentkit.org
 DOMAIN-SUFFIX,compose-spec.io
 DOMAIN-SUFFIX,conda.io
 DOMAIN-SUFFIX,consul.io
-DOMAIN-SUFFIX,copilot-telemetry.githubusercontent.com
 DOMAIN-SUFFIX,cpan.org
 DOMAIN-SUFFIX,crates.io
 DOMAIN-SUFFIX,cups.org
@@ -77,7 +76,6 @@ DOMAIN-SUFFIX,datalore.io
 DOMAIN-SUFFIX,debian.org
 DOMAIN-SUFFIX,deno.com
 DOMAIN-SUFFIX,deno.land
-DOMAIN-SUFFIX,dependabot.com
 DOMAIN-SUFFIX,dev.to
 DOMAIN-SUFFIX,developer.apple.com
 DOMAIN-SUFFIX,developerservices2.apple.com
@@ -156,28 +154,10 @@ DOMAIN-SUFFIX,getbootstrap.com
 DOMAIN-SUFFIX,getcomposer.org
 DOMAIN-SUFFIX,getfedora.org
 DOMAIN-SUFFIX,getzola.org
-DOMAIN-SUFFIX,gh.io
-DOMAIN-SUFFIX,ghcr.io
 DOMAIN-SUFFIX,git-scm.com
-DOMAIN-SUFFIX,git.io
 DOMAIN-SUFFIX,gitbook.com
 DOMAIN-SUFFIX,gitbook.io
-DOMAIN-SUFFIX,github.ai
-DOMAIN-SUFFIX,github.blog
-DOMAIN-SUFFIX,github.com
-DOMAIN-SUFFIX,github.community
-DOMAIN-SUFFIX,github.dev
-DOMAIN-SUFFIX,github.io
 DOMAIN-SUFFIX,github1s.com
-DOMAIN-SUFFIX,githubapp.com
-DOMAIN-SUFFIX,githubassets.com
-DOMAIN-SUFFIX,githubcopilot.com
-DOMAIN-SUFFIX,githubhackathon.com
-DOMAIN-SUFFIX,githubnext.com
-DOMAIN-SUFFIX,githubpreview.dev
-DOMAIN-SUFFIX,githubstatus.com
-DOMAIN-SUFFIX,githubuniverse.com
-DOMAIN-SUFFIX,githubusercontent.com
 DOMAIN-SUFFIX,gitlab-static.net
 DOMAIN-SUFFIX,gitlab.com
 DOMAIN-SUFFIX,gitlab.io
@@ -287,7 +267,6 @@ DOMAIN-SUFFIX,msdn.com
 DOMAIN-SUFFIX,msinnovationchallenge.com
 DOMAIN-SUFFIX,mspairlift.com
 DOMAIN-SUFFIX,msropendata.com
-DOMAIN-SUFFIX,myoctocat.com
 DOMAIN-SUFFIX,mysql.com
 DOMAIN-SUFFIX,mystrikingly.com
 DOMAIN-SUFFIX,neovim.io
@@ -301,12 +280,8 @@ DOMAIN-SUFFIX,nodejs.org
 DOMAIN-SUFFIX,nodesource.com
 DOMAIN-SUFFIX,nomadproject.io
 DOMAIN-SUFFIX,notepad-plus-plus.org
-DOMAIN-SUFFIX,npm.community
-DOMAIN-SUFFIX,npmjs.com
-DOMAIN-SUFFIX,npmjs.org
 DOMAIN-SUFFIX,nuget.org
 DOMAIN-SUFFIX,nugettest.org
-DOMAIN-SUFFIX,octocaptcha.com
 DOMAIN-SUFFIX,ogp.me
 DOMAIN-SUFFIX,oneapi.com
 DOMAIN-SUFFIX,oneapi.io
@@ -316,7 +291,6 @@ DOMAIN-SUFFIX,opengraphprotocol.com
 DOMAIN-SUFFIX,opengraphprotocol.org
 DOMAIN-SUFFIX,openjsf.org
 DOMAIN-SUFFIX,openresty.org
-DOMAIN-SUFFIX,opensource.guide
 DOMAIN-SUFFIX,openssl.org
 DOMAIN-SUFFIX,opensuse.org
 DOMAIN-SUFFIX,opentranslatorstothings.org
@@ -374,7 +348,6 @@ DOMAIN-SUFFIX,redislabs.com
 DOMAIN-SUFFIX,regex101.com
 DOMAIN-SUFFIX,remirepo.net
 DOMAIN-SUFFIX,renderingtoolkit.org
-DOMAIN-SUFFIX,repo.new
 DOMAIN-SUFFIX,researchandcare.org
 DOMAIN-SUFFIX,researchkit.cn
 DOMAIN-SUFFIX,researchkit.com.cn
@@ -442,7 +415,6 @@ DOMAIN-SUFFIX,termux.dev
 DOMAIN-SUFFIX,termux.org
 DOMAIN-SUFFIX,terraform.io
 DOMAIN-SUFFIX,tex-talk.net
-DOMAIN-SUFFIX,thegithubshop.com
 DOMAIN-SUFFIX,thesffblog.com
 DOMAIN-SUFFIX,tilda.cc
 DOMAIN-SUFFIX,tilda.ru
@@ -527,8 +499,6 @@ DOMAIN,firebaselogging-pa.googleapis.com
 DOMAIN,firebaselogging.googleapis.com
 DOMAIN,firebaseperusertopics-pa.googleapis.com
 DOMAIN,firebaseremoteconfig.googleapis.com
-DOMAIN,github-api.arkoselabs.com
-DOMAIN,github-cloud.s3.amazonaws.com
 DOMAIN,gitlab-assets.oss-cn-hongkong.aliyuncs.com
 DOMAIN,homebrew.bintray.com
 DOMAIN,notary-submissions-prod.s3-accelerate.amazonaws.com

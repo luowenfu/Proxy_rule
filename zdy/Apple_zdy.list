@@ -1,0 +1,6 @@
+# Apple_zdy: 旧规则 − meta geosite/apple,apple-cn
+# 来源: https://raw.githubusercontent.com/liandu2024/clash/main/list/Apple.list
+DOMAIN-KEYWORD,apple-relay
+DOMAIN-SUFFIX,apple-relay.cloudflare.com
+DOMAIN-SUFFIX,apple-relay.fastly-edge.com
+DOMAIN-SUFFIX,cp4.cloudflare.com

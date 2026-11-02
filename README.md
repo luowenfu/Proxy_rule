@@ -12,67 +12,66 @@ OpenClash / Mihomo 规则仓库。
 https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geosite_openai.mrs   # behavior: domain, format: mrs
 https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/zdy/Globe2.list          # behavior: classical, format: text
 ```
-命名约定：公共规则 `服务名 / Domain`（或 `/ IP`）→ `mrs/`（anchor `*domain` / `*ip`，format mrs）；仅自定义条目 `服务名_zdy / Domain` → `zdy/*.list`（anchor `*class`）。`_zdy` 在 rule-providers 和 rules 中都排在对应 mrs 之前（如 `Apple_zdy` → `Apple`，`Crypto_zdy` → `Crypto`，`Globe_zdy`/`Proxy_zdy` → `Globe`）。公共规则不得写成 list，也不再使用 `clash/` 目录。
+命名约定：公共规则 服务名 / Domain（或 / IP）→ mrs/（anchor *domain / *ip，format mrs）；自定义 服务名_zdy / Domain → zdy/服务名_zdy.list（anchor *class）。同一服务 _zdy 在 rule-providers 和 rules 中都紧挨着排在 mrs 之前。公共规则不得写成 list，也不使用 clash/ 目录。
 
-## Provider 映射
-| rule-provider | 文件 |
-|---|---|
-| `ChatGPT / Domain` | `mrs/geosite_openai.mrs` |
-| `Claude / Domain` | `mrs/geosite_anthropic.mrs` |
-| `Perplexity / Domain` | `mrs/geosite_perplexity.mrs` |
-| `Gemini / Domain` | `mrs/geosite_google-gemini.mrs` |
-| `Grok / Domain` | `mrs/geosite_xai.mrs` |
-| `Groq / Domain` | `mrs/geosite_groq.mrs` |
-| `Cursor / Domain` | `mrs/geosite_cursor.mrs` |
-| `Telegram / Domain` | `mrs/geosite_telegram.mrs` |
-| `Telegram / IP` | `mrs/geoip_telegram.mrs` |
-| `Twitter / Domain` | `mrs/geosite_x.mrs` |
-| `WhatsApp / Domain` | `mrs/geosite_whatsapp.mrs` |
-| `Facebook / Domain` | `mrs/geosite_facebook.mrs` |
-| `Instagram / Domain` | `mrs/geosite_instagram.mrs` |
-| `Reddit / Domain` | `mrs/geosite_reddit.mrs` |
-| `Amazon / Domain` | `mrs/geosite_amazon.mrs` |
-| `Apple-CN / Domain` | `mrs/geosite_apple-cn.mrs` |
-| `Apple / Domain` | `mrs/geosite_apple.mrs` |
-| `Microsoft / Domain` | `mrs/geosite_microsoft.mrs` |
-| `TikTok / Domain` | `mrs/geosite_tiktok.mrs` |
-| `Netflix / Domain` | `mrs/geosite_netflix.mrs` |
-| `Netflix / IP` | `mrs/geoip_netflix.mrs` |
-| `Disney / Domain` | `mrs/geosite_disney.mrs` |
-| `HBO / Domain` | `mrs/geosite_hbo.mrs` |
-| `Spotify / Domain` | `mrs/geosite_spotify.mrs` |
-| `Youtube / Domain` | `mrs/geosite_youtube.mrs` |
-| `BiliBili / Domain` | `mrs/geosite_bilibili.mrs` |
-| `Steam / Domain` | `mrs/geosite_steam.mrs` |
-| `Epic / Domain` | `mrs/geosite_epicgames.mrs` |
-| `EA / Domain` | `mrs/geosite_ea.mrs` |
-| `Blizzard / Domain` | `mrs/geosite_blizzard.mrs` |
-| `UBI / Domain` | `mrs/geosite_ubisoft.mrs` |
-| `PlayStation / Domain` | `mrs/geosite_playstation.mrs` |
-| `Nintend / Domain` | `mrs/geosite_nintendo.mrs` |
-| `Adobe / Domain` | `mrs/geosite_adobe.mrs` |
-| `Nvidia / Domain` | `mrs/geosite_nvidia.mrs` |
-| `PayPal / Domain` | `mrs/geosite_paypal.mrs` |
-| `eBay / Domain` | `mrs/geosite_ebay.mrs` |
-| `Wise / Domain` | `mrs/geosite_wise.mrs` |
-| `Synology / Domain` | `mrs/geosite_synology.mrs` |
-| `Crypto / Domain` | `mrs/geosite_category-cryptocurrency.mrs` |
-| `PT-Tracker / Domain` | `mrs/geosite_category-pt.mrs` |
-| `Google / Domain` | `mrs/geosite_google.mrs` |
-| `Google / IP` | `mrs/geoip_google.mrs` |
-| `Private / Domain` | `mrs/geosite_private.mrs` |
-| `China / Domain` | `mrs/geosite_cn.mrs` |
-| `China / IP` | `mrs/geoip_cn.mrs` |
-| `Globe / Domain` | `mrs/geosite_geolocation-not-cn.mrs` |
-| `Globe_zdy / Domain` | `zdy/Globe2.list` |
-| `Dev-GitHub_zdy / Domain` | `zdy/dev.list` |
-| `UltraMobile_zdy / Domain` | `zdy/ultramobile.list` |
-| `Crypto_zdy / Domain` | `zdy/crypto.list` |
-| `TEST_zdy / Domain` | `zdy/Check.list` |
-| `Meta AI_zdy / Domain` | `zdy/MetaAi.list` |
-| `Copilot_zdy / Domain` | `zdy/Copilot.list` |
-| `Apple_zdy / Domain` | `zdy/Apple.list` |
-| `Crunchyroll_zdy / Domain` | `zdy/Crunchyroll.list` |
-| `Popcorn_zdy / Domain` | `zdy/Popcorn.list` |
-| `Direct_zdy / Domain` | `zdy/Direct.list` |
-| `Proxy_zdy / Domain` | `zdy/Proxy.list` |
+## zdy 如何生成（差集）
+按旧配置的每个分流服务：下载旧 rule-provider URL 的实际内容（blackmatrix7 / liandu2024 / luowenfu 自建 list），与 meta 分支同名 geosite（及 geoip）的可读 .list 做差集：
+- zdy = 旧规则条目 − geosite 已覆盖条目；差集为空则不建 zdy，只用 mrs。
+- 规范化：域名小写；裸域名视为 DOMAIN，+.x 视为 DOMAIN-SUFFIX；旧 DOMAIN-SUFFIX,x 若 geosite 有 x 或其任一父域的 suffix 即视为已覆盖；旧 DOMAIN,x 若 geosite 有 full x 或其父域 suffix 即覆盖；IP-CIDR 仅当服务有 geoip 且为其子网才覆盖；DOMAIN-KEYWORD、PROCESS-NAME 等 mrs 无法表达，一律保留在 zdy。
+- meta 无对应 geosite 的服务（TEST、Meta AI、Copilot、Crunchyroll、Popcorn、UltraMobile、Direct、Proxy、Globe、Globe2）：旧内容全量进 zdy，不建 mrs。
+
+## 服务处理表（条数 = 旧规则去重后 / 差集）
+| 服务 | 处理 | meta 来源 | 旧条数 | zdy 条数 |
+|---|---|---|---|---|
+| TEST | 仅zdy | — | 60 | 60 |
+| ChatGPT | 仅mrs | geosite:openai | 0 | 0 |
+| Claude | mrs+zdy | geosite:anthropic | 3 | 1 |
+| Cursor | 仅mrs | geosite:cursor | 0 | 0 |
+| Meta AI | 仅zdy | — | 5 | 5 |
+| Perplexity | 仅mrs | geosite:perplexity | 0 | 0 |
+| Copilot | 仅zdy | — | 2 | 2 |
+| Gemini | mrs+zdy | geosite:google-gemini | 11 | 4 |
+| Groq | 仅mrs | geosite:groq | 0 | 0 |
+| Grok | 仅mrs | geosite:xai | 1 | 0 |
+| Reddit | 仅mrs | geosite:reddit | 0 | 0 |
+| PT-Tracker | mrs+zdy | geosite:category-pt | 266 | 202 |
+| Dev-GitHub | mrs+zdy | geosite:github | 546 | 514 |
+| Synology | 仅mrs | geosite:synology | 0 | 0 |
+| Telegram | 仅mrs | geosite:telegram, geoip:telegram | 0 | 0 |
+| Twitter | 仅mrs | geosite:x | 0 | 0 |
+| WhatsApp | mrs+zdy | geosite:whatsapp | 17 | 15 |
+| Facebook | 仅mrs | geosite:facebook | 0 | 0 |
+| Instagram | mrs+zdy | geosite:instagram | 4 | 2 |
+| Apple | mrs+zdy | geosite:apple, geosite:apple-cn | 11 | 4 |
+| Microsoft | 仅mrs | geosite:microsoft | 0 | 0 |
+| Crypto | mrs+zdy | geosite:category-cryptocurrency | 341 | 155 |
+| PayPal | mrs+zdy | geosite:paypal | 247 | 3 |
+| Wise | 仅mrs | geosite:wise | 0 | 0 |
+| BiliBili | 仅mrs | geosite:bilibili | 0 | 0 |
+| Youtube | mrs+zdy | geosite:youtube | 183 | 7 |
+| TikTok | 仅mrs | geosite:tiktok | 0 | 0 |
+| Netflix | 仅mrs | geosite:netflix, geoip:netflix | 0 | 0 |
+| Disney | 仅mrs | geosite:disney | 0 | 0 |
+| Amazon | 仅mrs | geosite:amazon | 0 | 0 |
+| eBay | mrs+zdy | geosite:ebay | 44 | 7 |
+| Crunchyroll | 仅zdy | — | 3 | 3 |
+| Popcorn | 仅zdy | — | 1 | 1 |
+| HBO | 仅mrs | geosite:hbo | 0 | 0 |
+| Spotify | 仅mrs | geosite:spotify | 0 | 0 |
+| Steam | 仅mrs | geosite:steam | 0 | 0 |
+| Epic | mrs+zdy | geosite:epicgames | 15 | 1 |
+| EA | mrs+zdy | geosite:ea | 165 | 6 |
+| Blizzard | mrs+zdy | geosite:blizzard | 62 | 48 |
+| UBI | mrs+zdy | geosite:ubisoft | 5 | 2 |
+| PlayStation | 仅mrs | geosite:playstation | 4 | 0 |
+| Nintend | mrs+zdy | geosite:nintendo | 126 | 4 |
+| Google | 仅mrs | geosite:google, geoip:google | 0 | 0 |
+| Nvidia | mrs+zdy | geosite:nvidia | 62 | 2 |
+| Adobe | mrs+zdy | geosite:adobe | 137 | 14 |
+| UltraMobile | 仅zdy | — | 2 | 2 |
+| Direct | 仅zdy | — | 577 | 577 |
+| China | 仅mrs | geosite:cn, geoip:cn | 0 | 0 |
+| Private | 仅mrs | geosite:private | 0 | 0 |
+| Proxy | 仅zdy | — | 296 | 296 |
+| Globe | 仅zdy | — | 35278 | 35278 |
+| Globe2 | 仅zdy | — | 1 | 1 |
