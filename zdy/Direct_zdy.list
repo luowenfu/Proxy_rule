@@ -1,5 +1,10 @@
 # Direct_zdy: 旧规则 − meta geosite(无对应，全量)
 # 来源: https://raw.githubusercontent.com/liandu2024/clash/main/list/Direct.list
+DOMAIN-SUFFIX,dfsss.com
+DOMAIN-SUFFIX,iii.do
+DOMAIN-SUFFIX,miyaip.online
+DOMAIN-SUFFIX,gh-proxy.com
+DOMAIN-SUFFIX,mnapi.com
 DOMAIN-SUFFIX,whtjdasha.com
 DOMAIN-SUFFIX,chybinc.com
 DOMAIN-SUFFIX,gfw.gg
