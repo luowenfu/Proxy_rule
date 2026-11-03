@@ -75,7 +75,7 @@ https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/ma
 | China | 仅mrs | geosite:cn, geoip:cn | 0 | 0 |
 | Private | 仅mrs | geosite:private | 0 | 0 |
 | Proxy | 仅zdy | — | 296 | 296 |
-| Globe | 仅 mrs | geolocation-!cn | — | — |
+| Globe | mrs + Globe_zdy | geosite:geolocation-!cn | — | 见 Globe_zdy |
 | Globe_zdy | 差集/自定义 | — | 1 | 1 |
 
 ## Globe
