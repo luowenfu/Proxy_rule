@@ -1,6 +1,5 @@
 # Adobe_zdy: 旧规则 − meta geosite/adobe
 # 来源: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Adobe/Adobe.list
-DOMAIN-SUFFIX,edukeyra.org
 DOMAIN,cc-ext-prod-pkgs.s3.amazonaws.com
 DOMAIN-SUFFIX,bam.nr-data.net
 DOMAIN-SUFFIX,demandbase.com
