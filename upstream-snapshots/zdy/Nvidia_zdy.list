@@ -1,0 +1,5 @@
+# Nvidia_zdy: 上游规则 − meta geosite/nvidia
+# 来源: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nvidia/Nvidia.list
+# geosite差集: nvidia
+DOMAIN-SUFFIX,nvda.d2.sc.omtrdc.net
+DOMAIN-SUFFIX,nvidia.tt.omtrdc.net

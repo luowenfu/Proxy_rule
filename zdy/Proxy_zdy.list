@@ -1,4 +1,4 @@
-# Proxy_zdy: 旧规则 − meta geosite(无对应，全量)
+# Proxy_zdy: 上游规则 − meta geosite(无对应，全量)
 # 来源: https://raw.githubusercontent.com/liandu2024/clash/main/list/Proxy.list
 IP-CIDR,142.171.133.0/24,no-resolve
 IP-CIDR,103.115.43.0/24,no-resolve

@@ -1,5 +1,5 @@
-# Dev-GitHub_zdy: 旧规则 − meta geosite/github
-# 来源: https://raw.githubusercontent.com/luowenfu/ios_rule_script/master/lwf_zdy/rules/dev.list
+# Dev-GitHub_zdy: 本地自定义 − meta geosite/github
+# 来源: 本地自定义（原 luowenfu/ios_rule_script，已停用，不同步）
 DOMAIN-SUFFIX,01.org
 DOMAIN-SUFFIX,accountkit.com
 DOMAIN-SUFFIX,acpica.com

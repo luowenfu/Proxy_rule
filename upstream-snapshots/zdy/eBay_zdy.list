@@ -1,0 +1,10 @@
+# eBay_zdy: 上游规则 − meta geosite/ebay
+# 来源: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/eBay/eBay.list
+# geosite差集: ebay
+DOMAIN-SUFFIX,about.co.kr
+DOMAIN-SUFFIX,auction.co.kr
+DOMAIN-SUFFIX,ebay.co.krhe
+DOMAIN-SUFFIX,ebaykorea.com
+DOMAIN-SUFFIX,esmplus.com
+DOMAIN-SUFFIX,g9.co.kr
+DOMAIN-SUFFIX,gmarket.co.kr

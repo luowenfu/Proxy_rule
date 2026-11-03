@@ -4,8 +4,8 @@ OpenClash / Mihomo 规则仓库。
 
 ## 目录如何区分
 - `mrs/`：**全部来自 [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat) `meta` 分支**的二进制规则，命名 `geosite_<分类>.mrs` / `geoip_<分类>.mrs`（`geolocation-!cn` 写成 `geolocation-not-cn`）。由 `upstream.json` 声明来源，GitHub Actions 每 3 天自动同步。
-- `zdy/`：**自定义**的 classical `.list`（meta 无对应分类或为自用规则），本地手工维护，不参与同步。
-- `upstream-snapshots/`：上次同步时的上游原样快照。若 `mrs/` 中某文件与快照不同（本地改过），同步时保留本地版本。
+- `zdy/`：**自定义**的 classical `.list`（meta 无对应分类或为自用规则）。在 `upstream.json` 中声明了上游（对象：`url` + `geosite` 列表）的 zdy 每 3 天随上游同步：有 geosite 则按下文差集规则生成，`geosite` 为空则上游全量写入；本地改过（与快照不同）则保留本地。**不再使用 luowenfu/ios_rule_script 作为来源**：原来源为该仓的 zdy（Crypto、Dev-GitHub、Globe、PT-Tracker、UltraMobile）为纯本地自定义，不写来源、不同步。
+- `upstream-snapshots/`：上次同步时的上游快照（mrs 为原样字节，zdy 为脚本计算出的最终文本）。若 `mrs/` 或 `zdy/` 中某文件与快照不同（本地改过），同步时保留本地版本。
 
 ## 在 YAML 中引用
 ```
@@ -15,7 +15,7 @@ https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/ma
 命名约定：公共规则 服务名 / Domain（或 / IP）→ mrs/（anchor *domain / *ip，format mrs）；自定义 服务名_zdy / Domain → zdy/服务名_zdy.list（anchor *class）。同一服务 _zdy 在 rule-providers 和 rules 中都紧挨着排在 mrs 之前。公共规则不得写成 list，也不使用 clash/ 目录。
 
 ## zdy 如何生成（差集）
-按旧配置的每个分流服务：下载旧 rule-provider URL 的实际内容（blackmatrix7 / liandu2024 / luowenfu 自建 list），与 meta 分支同名 geosite（及 geoip）的可读 .list 做差集：
+按旧配置的每个分流服务：下载旧 rule-provider URL 的实际内容（blackmatrix7 / liandu2024；原 luowenfu 自建 list 已停用，转为本地自定义），与 meta 分支同名 geosite（及 geoip）的可读 .list 做差集：
 - zdy = 旧规则条目 − geosite 已覆盖条目；差集为空则不建 zdy，只用 mrs。
 - 规范化：域名小写；裸域名视为 DOMAIN，+.x 视为 DOMAIN-SUFFIX；旧 DOMAIN-SUFFIX,x 若 geosite 有 x 或其任一父域的 suffix 即视为已覆盖；旧 DOMAIN,x 若 geosite 有 full x 或其父域 suffix 即覆盖；IP-CIDR 仅当服务有 geoip 且为其子网才覆盖；DOMAIN-KEYWORD、PROCESS-NAME 等 mrs 无法表达，一律保留在 zdy。
 - meta 无对应 geosite 的服务（TEST、Meta AI、Copilot、Crunchyroll、Popcorn、UltraMobile、Direct、Proxy）：旧内容全量进 zdy，不建 mrs。

@@ -1,0 +1,7 @@
+# Gemini_zdy: 上游规则 − meta geosite/google-gemini
+# 来源: https://raw.githubusercontent.com/liandu2024/clash/main/list/Gemini.list
+# geosite差集: google-gemini
+DOMAIN-SUFFIX,gemini-pa.googleapis.com
+DOMAIN-SUFFIX,aistudio-pa.clients6.google.com
+DOMAIN-SUFFIX,googleusercontent.com
+DOMAIN-SUFFIX,android.googleapis.com

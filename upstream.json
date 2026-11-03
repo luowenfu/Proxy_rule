@@ -47,5 +47,124 @@
   "mrs/geosite_x.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs",
   "mrs/geosite_xai.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/xai.mrs",
   "mrs/geosite_youtube.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs",
-  "mrs/geosite_category-ai-chat-not-cn.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-chat-!cn.mrs"
+  "mrs/geosite_category-ai-chat-not-cn.mrs": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-chat-!cn.mrs",
+  "zdy/Adobe_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Adobe/Adobe.list",
+    "geosite": [
+      "adobe"
+    ]
+  },
+  "zdy/Apple_zdy.list": {
+    "url": "https://raw.githubusercontent.com/liandu2024/clash/main/list/Apple.list",
+    "geosite": [
+      "apple",
+      "apple-cn"
+    ]
+  },
+  "zdy/Blizzard_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Blizzard/Blizzard.list",
+    "geosite": [
+      "blizzard"
+    ]
+  },
+  "zdy/Claude_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.list",
+    "geosite": [
+      "anthropic"
+    ]
+  },
+  "zdy/Copilot_zdy.list": {
+    "url": "https://raw.githubusercontent.com/liandu2024/clash/main/list/Copilot.list",
+    "geosite": []
+  },
+  "zdy/Crunchyroll_zdy.list": {
+    "url": "https://raw.githubusercontent.com/liandu2024/clash/main/list/Crunchyroll.list",
+    "geosite": []
+  },
+  "zdy/Direct_zdy.list": {
+    "url": "https://raw.githubusercontent.com/liandu2024/clash/main/list/Direct.list",
+    "geosite": []
+  },
+  "zdy/EA_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list",
+    "geosite": [
+      "ea"
+    ]
+  },
+  "zdy/Epic_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list",
+    "geosite": [
+      "epicgames"
+    ]
+  },
+  "zdy/Gemini_zdy.list": {
+    "url": "https://raw.githubusercontent.com/liandu2024/clash/main/list/Gemini.list",
+    "geosite": [
+      "google-gemini"
+    ]
+  },
+  "zdy/Instagram_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram.list",
+    "geosite": [
+      "instagram"
+    ]
+  },
+  "zdy/MetaAI_zdy.list": {
+    "url": "https://raw.githubusercontent.com/liandu2024/clash/main/list/MetaAi.list",
+    "geosite": []
+  },
+  "zdy/Nintend_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.list",
+    "geosite": [
+      "nintendo"
+    ]
+  },
+  "zdy/Nvidia_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nvidia/Nvidia.list",
+    "geosite": [
+      "nvidia"
+    ]
+  },
+  "zdy/PayPal_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal.list",
+    "geosite": [
+      "paypal"
+    ]
+  },
+  "zdy/Popcorn_zdy.list": {
+    "url": "https://raw.githubusercontent.com/liandu2024/clash/main/list/Popcorn.list",
+    "geosite": []
+  },
+  "zdy/Proxy_zdy.list": {
+    "url": "https://raw.githubusercontent.com/liandu2024/clash/main/list/Proxy.list",
+    "geosite": []
+  },
+  "zdy/TEST_zdy.list": {
+    "url": "https://raw.githubusercontent.com/liandu2024/clash/main/list/Check.list",
+    "geosite": []
+  },
+  "zdy/UBI_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/UBI/UBI.list",
+    "geosite": [
+      "ubisoft"
+    ]
+  },
+  "zdy/WhatsApp_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Whatsapp/Whatsapp.list",
+    "geosite": [
+      "whatsapp"
+    ]
+  },
+  "zdy/Youtube_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.list",
+    "geosite": [
+      "youtube"
+    ]
+  },
+  "zdy/eBay_zdy.list": {
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/eBay/eBay.list",
+    "geosite": [
+      "ebay"
+    ]
+  }
 }

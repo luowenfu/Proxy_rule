@@ -1,5 +1,6 @@
-# EA_zdy: 旧规则 − meta geosite/ea
+# EA_zdy: 上游规则 − meta geosite/ea
 # 来源: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list
+# geosite差集: ea
 DOMAIN,eaasserts-a.akamaihd.net
 DOMAIN,originasserts.akamaized.net
 DOMAIN-SUFFIX,cloudsync-prod.s3.amazonaws.com

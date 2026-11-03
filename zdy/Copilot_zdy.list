@@ -1,4 +1,4 @@
-# Copilot_zdy: 旧规则 − meta geosite(无对应，全量)
+# Copilot_zdy: 上游规则 − meta geosite(无对应，全量)
 # 来源: https://raw.githubusercontent.com/liandu2024/clash/main/list/Copilot.list
 DOMAIN,copilot.microsoft.com
 DOMAIN-SUFFIX,bing.com
