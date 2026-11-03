@@ -20,7 +20,7 @@ https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/ma
 - zdy = 旧规则条目 − geosite 已覆盖条目；差集为空则不建 zdy，只用 mrs。
 - 规范化：域名小写；裸域名视为 DOMAIN，+.x 视为 DOMAIN-SUFFIX；旧 DOMAIN-SUFFIX,x 若 geosite 有 x 或其任一父域的 suffix 即视为已覆盖；旧 DOMAIN,x 若 geosite 有 full x 或其父域 suffix 即覆盖；IP-CIDR 仅当服务有 geoip 且为其子网才覆盖；DOMAIN-KEYWORD、PROCESS-NAME 等 mrs 无法表达，一律保留在 zdy。
 - meta 无对应 geosite 的服务（TEST、Meta AI、Copilot、Crunchyroll、Popcorn、UltraMobile、Direct、Proxy）：旧内容全量进 zdy，不建 mrs。
-- Globe：直接使用 meta `geolocation-!cn`（本仓 `mrs/geosite_geolocation-not-cn.mrs`），不再使用 Globe_zdy。
+- Globe：主体用 meta `geolocation-!cn`（本仓 `mrs/geosite_geolocation-not-cn.mrs`）；额外自定义仍用 `zdy/zdy/Globe_zdy.list`（原 Globe2），排在 Globe mrs 之前。
 
 ## 服务处理表（条数 = 旧规则去重后 / 差集）
 | 服务 | 处理 | meta 来源 | 旧条数 | zdy 条数 |
@@ -80,7 +80,7 @@ https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/ma
 
 ## Globe
 
-Globe 现直接使用 meta `geolocation-!cn`（本仓 `mrs/geosite_geolocation-not-cn.mrs`），不再使用 Globe_zdy。
+Globe 主体直接使用 meta `geolocation-!cn`（本仓 `mrs/geosite_geolocation-not-cn.mrs`）。额外自定义使用 `Globe_zdy` → `zdy/zdy/Globe_zdy.list`（原 Globe2，如 fanart.tv），在配置里排在 Globe mrs 之前。
 
 ## AI 兜底
 
