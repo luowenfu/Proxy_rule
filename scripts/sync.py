@@ -3,8 +3,10 @@
 - 值为字符串：原样拉取字节写入（mrs/，来自 MetaCubeX/meta-rules-dat meta 分支）。
 - 值为对象 {"url", "geosite": [...], "geoip": [...]}（zdy/）：下载上游 classical list，
   减去 meta geosite/geoip 已覆盖条目（geosite 为空则全量），生成 zdy 文本。
-冲突策略（KEEP-LOCAL）：本地文件与 upstream-snapshots/ 中上次计算结果不同（本地改过）则保留本地；
-快照总是更新为本次计算结果。zdy 无快照但本地已存在且内容不同，也视为本地修改而保留。
+zdy 按条合并：以规则键（类型|主参数小写，去 no-resolve）合并本地与上游结果——
+上游新增并入；本地独有保留；两边都有用本地行（冲突以本地为准）。顺序：本地原顺序在前，再补上游新键。
+upstream-snapshots/zdy/ 存本次纯上游计算结果（未与本地合并）。
+mrs 整文件 KEEP-LOCAL：本地与上次快照不同（本地改过）则保留本地；快照总是更新为本次上游。
 来自已停用的 luowenfu/ios_rule_script 的 zdy 为纯本地自定义，不在 upstream.json 中，不同步。"""
 import json, os, re, sys, ipaddress, urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,6 +36,25 @@ def norm(l):
     if t in ("DOMAIN", "DOMAIN-SUFFIX", "DOMAIN-KEYWORD"):
         return (t, p[1].lower())
     return (t, ",".join(p[1:]))
+
+def rkey(l):
+    t, v = norm(l)
+    v = ",".join(x for x in v.split(",") if x.strip().lower() != "no-resolve")
+    return t + "|" + v.lower()
+
+def merge(local, up):
+    ul = up.decode("utf-8").splitlines()
+    head = [l for l in ul if l.startswith("#")]
+    urules = [l for l in ul if l.strip() and not l.startswith("#")]
+    out, seen = [], set()
+    for l in lines(local.decode("utf-8", "replace")) if local else []:
+        k = rkey(l)
+        if k not in seen: seen.add(k); out.append(l)
+    nl = len(out)
+    for l in urules:
+        k = rkey(l)
+        if k not in seen: seen.add(k); out.append(l)
+    return ("\n".join(head + out) + "\n").encode("utf-8"), len(out) - nl
 
 def parents(d):
     parts = d.split(".")
@@ -86,7 +107,12 @@ for rel, spec in up.items():
         print("EMPTY", rel); fail += 1; continue
     local = open(dst, "rb").read() if os.path.exists(dst) else None
     old = open(snap, "rb").read() if os.path.exists(snap) else None
-    if local is not None and local != data and (old is not None and local != old or old is None and rel.startswith("zdy/")):
+    if rel.startswith("zdy/") and not isinstance(spec, str):
+        merged, added = merge(local, data)
+        if merged != local:
+            os.makedirs(os.path.dirname(dst), exist_ok=True); open(dst, "wb").write(merged); print("MERGE", rel, "+%d" % added)
+        else: print("SAME", rel)
+    elif local is not None and local != data and old is not None and local != old:
         print("KEEP-LOCAL", rel)
     elif local != data:
         os.makedirs(os.path.dirname(dst), exist_ok=True); open(dst, "wb").write(data); print("UPDATE", rel)

@@ -1,4 +1,4 @@
-# TEST_zdy: 旧规则 − meta geosite(无对应，全量)
+# TEST_zdy: 上游规则 − meta geosite(无对应，全量)
 # 来源: https://raw.githubusercontent.com/liandu2024/clash/main/list/Check.list
 GEOSITE,CATEGORY-SPEEDTEST
 DOMAIN-SUFFIX,ipjiance.com
@@ -56,7 +56,6 @@ DOMAIN-SUFFIX,ip125.com
 DOMAIN-SUFFIX,skk.moe
 DOMAIN-SUFFIX,ip111.cn
 DOMAIN-SUFFIX,ping0.cc
-DOMAIN-SUFFIX,ip.sb
 DOMAIN-SUFFIX,ipify.org
 DOMAIN-SUFFIX,whoer.com
 DOMAIN-SUFFIX,whatismyip.com.tw
