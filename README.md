@@ -5,12 +5,13 @@ OpenClash / Mihomo 规则仓库。
 ## 目录如何区分
 - `mrs/`：**全部来自 [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat) `meta` 分支**的二进制规则，命名 `geosite_<分类>.mrs` / `geoip_<分类>.mrs`（`geolocation-!cn` 写成 `geolocation-not-cn`）。由 `upstream.json` 声明来源，GitHub Actions 每 3 天自动同步。
 - `zdy/`：**自定义**的 classical `.list`（meta 无对应分类或为自用规则）。在 `upstream.json` 中声明了上游（对象：`url` + `geosite` 列表）的 zdy 每 3 天随上游同步：有 geosite 则按下文差集规则生成，`geosite` 为空则上游全量写入；**按条合并**：以规则键（类型|主参数小写，忽略 no-resolve）合并——上游新增并入；本地多出来的保留（上游删了也不删本地）；两边都有的冲突以本地行为准；顺序为本地原顺序在前、上游新键追加在后（注释/空行不保留，仅重写文件头）。**不再使用 luowenfu/ios_rule_script 作为来源**：原来源为该仓的 zdy（Crypto、Dev-GitHub、Globe、PT-Tracker、UltraMobile）为纯本地自定义，不写来源、不同步。
+  - 目录按来源分子目录：`zdy/blackmatrix7/`（上游 blackmatrix7/ios_rule_script）、`zdy/liandu2024/`（上游 liandu2024/clash）、`zdy/zdy/`（纯自定义，无上游，不在 upstream.json）。文件名保持 `*_zdy.list`，例如 `zdy/blackmatrix7/Adobe_zdy.list`。`upstream-snapshots/zdy/` 同样按 blackmatrix7/、liandu2024/ 分目录。
 - `upstream-snapshots/`：上次同步时的上游快照（mrs 为原样字节；zdy 为本次纯上游计算结果，未与本地合并）。`mrs/` 为二进制，整文件判断：与快照不同（本地改过）则保留本地版本；zdy 不再整文件跳过，而是按条合并。
 
 ## 在 YAML 中引用
 ```
 https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geosite_openai.mrs   # behavior: domain, format: mrs
-https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/zdy/Globe_zdy.list          # behavior: classical, format: text
+https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/zdy/zdy/Globe_zdy.list          # behavior: classical, format: text
 ```
 命名约定：公共规则 服务名 / Domain（或 / IP）→ mrs/（anchor *domain / *ip，format mrs）；自定义 服务名_zdy / Domain → zdy/服务名_zdy.list（anchor *class）。同一服务 _zdy 在 rule-providers 和 rules 中都紧挨着排在 mrs 之前。公共规则不得写成 list，也不使用 clash/ 目录。
 

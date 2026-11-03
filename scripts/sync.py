@@ -5,7 +5,7 @@
   减去 meta geosite/geoip 已覆盖条目（geosite 为空则全量），生成 zdy 文本。
 zdy 按条合并：以规则键（类型|主参数小写，去 no-resolve）合并本地与上游结果——
 上游新增并入；本地独有保留；两边都有用本地行（冲突以本地为准）。顺序：本地原顺序在前，再补上游新键。
-upstream-snapshots/zdy/ 存本次纯上游计算结果（未与本地合并）。
+upstream-snapshots/zdy/<来源>/ 存本次纯上游计算结果（未与本地合并）。
 mrs 整文件 KEEP-LOCAL：本地与上次快照不同（本地改过）则保留本地；快照总是更新为本次上游。
 来自已停用的 luowenfu/ios_rule_script 的 zdy 为纯本地自定义，不在 upstream.json 中，不同步。"""
 import json, os, re, sys, ipaddress, urllib.request
