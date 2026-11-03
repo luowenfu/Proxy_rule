@@ -1,87 +1,61 @@
 # Proxy_rule
 
-OpenClash / Mihomo 规则仓库。
+OpenClash / Mihomo 用的规则仓库（公开）。
 
-## 目录如何区分
-- `mrs/`：**全部来自 [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat) `meta` 分支**的二进制规则，命名 `geosite_<分类>.mrs` / `geoip_<分类>.mrs`（`geolocation-!cn` 写成 `geolocation-not-cn`）。由 `upstream.json` 声明来源，GitHub Actions 每 3 天自动同步。
-- `zdy/`：**自定义**的 classical `.list`（meta 无对应分类或为自用规则）。在 `upstream.json` 中声明了上游（对象：`url` + `geosite` 列表）的 zdy 每 3 天随上游同步：有 geosite 则按下文差集规则生成，`geosite` 为空则上游全量写入；**按条合并**：以规则键（类型|主参数小写，忽略 no-resolve）合并——上游新增并入；本地多出来的保留（上游删了也不删本地）；两边都有的冲突以本地行为准；顺序为本地原顺序在前、上游新键追加在后（注释/空行不保留，仅重写文件头）。**不再使用 luowenfu/ios_rule_script 作为来源**：原来源为该仓的 zdy（Crypto、Dev-GitHub、Globe、PT-Tracker、UltraMobile）为纯本地自定义，不写来源、不同步。
-  - 目录按来源分子目录：`zdy/blackmatrix7/`（上游 blackmatrix7/ios_rule_script）、`zdy/liandu2024/`（上游 liandu2024/clash）、`zdy/zdy/`（纯自定义，无上游，不在 upstream.json）。文件名保持 `*_zdy.list`，例如 `zdy/blackmatrix7/Adobe_zdy.list`。`upstream-snapshots/zdy/` 同样按 blackmatrix7/、liandu2024/ 分目录。
-- `upstream-snapshots/`：上次同步时的上游快照（mrs 为原样字节；zdy 为本次纯上游计算结果，未与本地合并）。`mrs/` 为二进制，整文件判断：与快照不同（本地改过）则保留本地版本；zdy 不再整文件跳过，而是按条合并。
+## 目录
 
-## 在 YAML 中引用
+| 路径 | 说明 |
+|------|------|
+| `mrs/` | 来自 [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat) **meta** 分支的 `.mrs`。命名：`geosite_<分类>.mrs` / `geoip_<分类>.mrs`（`geolocation-!cn` → `geolocation-not-cn`，`category-ai-chat-!cn` → `category-ai-chat-not-cn`）。 |
+| `zdy/blackmatrix7/` | 有上游 [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script) 的自定义 `.list`（可与 meta 做差集后同步）。 |
+| `zdy/liandu2024/` | 有上游 [liandu2024/clash](https://github.com/liandu2024/clash) 的自定义 `.list`。 |
+| `zdy/zdy/` | **纯本地自定义**，无上游、不进 `upstream.json`（Crypto、Dev-GitHub、Globe、PT-Tracker、UltraMobile）。 |
+| `upstream.json` | 声明 `mrs/` 与可同步 `zdy/` 的来源。 |
+| `upstream-snapshots/` | 上次同步的上游快照（用于对比 / 合并）。 |
+| `scripts/sync.py` | 同步脚本；GitHub Actions 约每 3 天跑一次（也可手动 workflow_dispatch）。 |
+
+## 同步规则
+
+- **mrs**：按 `upstream.json` 拉取；若本地文件与快照不同（说明改过），**整文件保留本地**，仍更新快照。
+- **zdy（blackmatrix7 / liandu2024）**：
+  - 声明了 `geosite`：用上游 list 对 meta 同名 geosite 做**差集**后再写入；
+  - `geosite` 为空：上游 **全量**写入；
+  - 与本地 **按条合并**：上游新增并入；本地多出来的保留；同一条冲突以**本地为准**。
+- **zdy/zdy/**：不同步，只手改。
+
+## 在 YAML 里怎么引用
+
 ```
-https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geosite_openai.mrs   # behavior: domain, format: mrs
-https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/zdy/zdy/Globe_zdy.list          # behavior: classical, format: text
+# 公共规则 → mrs（behavior: domain / ipcidr，format: mrs）
+https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geosite_openai.mrs
+
+# 自定义 → zdy（behavior: classical，format: text）
+https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/zdy/blackmatrix7/Youtube_zdy.list
+https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/zdy/zdy/Globe_zdy.list
 ```
-命名约定：公共规则 服务名 / Domain（或 / IP）→ mrs/（anchor *domain / *ip，format mrs）；自定义 服务名_zdy / Domain → zdy/服务名_zdy.list（anchor *class）。同一服务 _zdy 在 rule-providers 和 rules 中都紧挨着排在 mrs 之前。公共规则不得写成 list，也不使用 clash/ 目录。
 
-## zdy 如何生成（差集）
-按旧配置的每个分流服务：下载旧 rule-provider URL 的实际内容（blackmatrix7 / liandu2024；原 luowenfu 自建 list 已停用，转为本地自定义），与 meta 分支同名 geosite（及 geoip）的可读 .list 做差集：
-- zdy = 旧规则条目 − geosite 已覆盖条目；差集为空则不建 zdy，只用 mrs。
-- 规范化：域名小写；裸域名视为 DOMAIN，+.x 视为 DOMAIN-SUFFIX；旧 DOMAIN-SUFFIX,x 若 geosite 有 x 或其任一父域的 suffix 即视为已覆盖；旧 DOMAIN,x 若 geosite 有 full x 或其父域 suffix 即覆盖；IP-CIDR 仅当服务有 geoip 且为其子网才覆盖；DOMAIN-KEYWORD、PROCESS-NAME 等 mrs 无法表达，一律保留在 zdy。
-- meta 无对应 geosite 的服务（TEST、Meta AI、Copilot、Crunchyroll、Popcorn、UltraMobile、Direct、Proxy）：旧内容全量进 zdy，不建 mrs。
-- Globe：主体用 meta `geolocation-!cn`（本仓 `mrs/geosite_geolocation-not-cn.mrs`）；额外自定义仍用 `zdy/zdy/Globe_zdy.list`（原 Globe2），排在 Globe mrs 之前。
+命名约定：
 
-## 服务处理表（条数 = 旧规则去重后 / 差集）
-| 服务 | 处理 | meta 来源 | 旧条数 | zdy 条数 |
-|---|---|---|---|---|
-| TEST | 仅zdy | — | 60 | 60 |
-| ChatGPT | 仅mrs | geosite:openai | 0 | 0 |
-| Claude | mrs+zdy | geosite:anthropic | 3 | 1 |
-| Cursor | 仅mrs | geosite:cursor | 0 | 0 |
-| Meta AI | 仅zdy | — | 5 | 5 |
-| Perplexity | 仅mrs | geosite:perplexity | 0 | 0 |
-| Copilot | 仅zdy | — | 2 | 2 |
-| Gemini | mrs+zdy | geosite:google-gemini | 11 | 4 |
-| Groq | 仅mrs | geosite:groq | 0 | 0 |
-| Grok | 仅mrs | geosite:xai | 1 | 0 |
-| Reddit | 仅mrs | geosite:reddit | 0 | 0 |
-| PT-Tracker | mrs+zdy | geosite:category-pt | 266 | 202 |
-| Dev-GitHub | mrs+zdy | geosite:github | 546 | 514 |
-| Synology | 仅mrs | geosite:synology | 0 | 0 |
-| Telegram | 仅mrs | geosite:telegram, geoip:telegram | 0 | 0 |
-| Twitter | 仅mrs | geosite:x | 0 | 0 |
-| WhatsApp | mrs+zdy | geosite:whatsapp | 17 | 15 |
-| Facebook | 仅mrs | geosite:facebook | 0 | 0 |
-| Instagram | mrs+zdy | geosite:instagram | 4 | 2 |
-| Apple | mrs+zdy | geosite:apple, geosite:apple-cn | 11 | 4 |
-| Microsoft | 仅mrs | geosite:microsoft | 0 | 0 |
-| Crypto | mrs+zdy | geosite:category-cryptocurrency | 341 | 155 |
-| PayPal | mrs+zdy | geosite:paypal | 247 | 3 |
-| Wise | 仅mrs | geosite:wise | 0 | 0 |
-| BiliBili | 仅mrs | geosite:bilibili | 0 | 0 |
-| Youtube | mrs+zdy | geosite:youtube | 183 | 7 |
-| TikTok | 仅mrs | geosite:tiktok | 0 | 0 |
-| Netflix | 仅mrs | geosite:netflix, geoip:netflix | 0 | 0 |
-| Disney | 仅mrs | geosite:disney | 0 | 0 |
-| Amazon | 仅mrs | geosite:amazon | 0 | 0 |
-| eBay | mrs+zdy | geosite:ebay | 44 | 7 |
-| Crunchyroll | 仅zdy | — | 3 | 3 |
-| Popcorn | 仅zdy | — | 1 | 1 |
-| HBO | 仅mrs | geosite:hbo | 0 | 0 |
-| Spotify | 仅mrs | geosite:spotify | 0 | 0 |
-| Steam | 仅mrs | geosite:steam | 0 | 0 |
-| Epic | mrs+zdy | geosite:epicgames | 15 | 1 |
-| EA | mrs+zdy | geosite:ea | 165 | 6 |
-| Blizzard | mrs+zdy | geosite:blizzard | 62 | 48 |
-| UBI | mrs+zdy | geosite:ubisoft | 5 | 2 |
-| PlayStation | 仅mrs | geosite:playstation | 4 | 0 |
-| Nintend | mrs+zdy | geosite:nintendo | 126 | 4 |
-| Google | 仅mrs | geosite:google, geoip:google | 0 | 0 |
-| Nvidia | mrs+zdy | geosite:nvidia | 62 | 2 |
-| Adobe | mrs+zdy | geosite:adobe | 137 | 14 |
-| UltraMobile | 仅zdy | — | 2 | 2 |
-| Direct | 仅zdy | — | 577 | 577 |
-| China | 仅mrs | geosite:cn, geoip:cn | 0 | 0 |
-| Private | 仅mrs | geosite:private | 0 | 0 |
-| Proxy | 仅zdy | — | 296 | 296 |
-| Globe | mrs + Globe_zdy | geosite:geolocation-!cn | — | 见 Globe_zdy |
-| Globe_zdy | 差集/自定义 | — | 1 | 1 |
+- 公共：`服务名 / Domain`（或 `/ IP`）→ `mrs/`，锚点 `*domain` / `*ip`
+- 自定义：`服务名_zdy / Domain` → 对应 `zdy/.../服务名_zdy.list`，锚点 `*class`
+- 同一服务时，`_zdy` 必须排在同名 mrs **前面**
+- 公共规则不要写成 list，也不要再用 `clash/` 目录
 
-## Globe
+## zdy 与 meta 的关系
 
-Globe 主体直接使用 meta `geolocation-!cn`（本仓 `mrs/geosite_geolocation-not-cn.mrs`）。额外自定义使用 `Globe_zdy` → `zdy/zdy/Globe_zdy.list`（原 Globe2，如 fanart.tv），在配置里排在 Globe mrs 之前。
+- meta 有对应分类：配置里保留 mrs；多出来的域名进 `*_zdy.list`（差集）。
+- meta 无对应：整段只进 zdy（如 Copilot、Direct、Proxy、Crunchyroll 等，现位于 `zdy/liandu2024/` 或 `zdy/zdy/`）。
+- **Globe**：主体用 meta `geolocation-!cn` → `mrs/geosite_geolocation-not-cn.mrs`；额外自定义用 `Globe_zdy` → `zdy/zdy/Globe_zdy.list`，排在 Globe mrs 前。
+- **AI 兜底**：`Ai-Catchall / Domain` → `mrs/geosite_category-ai-chat-not-cn.mrs`（meta `category-ai-chat-!cn`），策略组「兜底漏网 AI」，排在各精细 AI 规则之后。
 
-## AI 兜底
+## 当前 zdy 文件一览
 
-AI 大类兜底：`Ai-Catchall / Domain` → `mrs/geosite_category-ai-chat-not-cn.mrs`（meta `category-ai-chat-!cn`），策略组「兜底漏网 AI」，排在各精细 AI 规则之后。
+**blackmatrix7（差集同步）**  
+Adobe、Blizzard、Claude、EA、Epic、Instagram、Nintend、Nvidia、PayPal、UBI、WhatsApp、Youtube、eBay
+
+**liandu2024**  
+差集：Apple、Gemini  
+全量：Copilot、Crunchyroll、Direct、MetaAI、Popcorn、Proxy、TEST
+
+**纯本地 `zdy/zdy/`**  
+Crypto、Dev-GitHub、Globe、PT-Tracker、UltraMobile
