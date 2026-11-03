@@ -80,3 +80,7 @@ https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/ma
 ## Globe
 
 Globe 现直接使用 meta `geolocation-!cn`（本仓 `mrs/geosite_geolocation-not-cn.mrs`），不再使用 Globe_zdy。
+
+## AI 兜底
+
+AI 大类兜底：`Ai-Catchall / Domain` → `mrs/geosite_category-ai-chat-not-cn.mrs`（meta `category-ai-chat-!cn`），策略组「兜底漏网 AI」，排在各精细 AI 规则之后。
