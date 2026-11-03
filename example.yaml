@@ -1,0 +1,102 @@
+# Proxy_rule 配置结构示例（不含任何真实订阅 / 节点 / 密钥）
+# 演示三级分流：个性化 zdy → 服务 mrs 加强 → 大类 / China / Globe 兜底
+# 请自行填写 proxy-providers、proxies、external-controller、secret 等，勿把真实密钥提交进仓库。
+
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+
+# 策略组仅作结构示例；proxies 请换成你自己的节点组名
+proxy-groups:
+  - name: Ai-ChatGPT
+    type: select
+    proxies: [DIRECT]
+  - name: Ai-Claude
+    type: select
+    proxies: [DIRECT]
+  - name: 兜底漏网 AI
+    type: select
+    proxies: [DIRECT]
+  - name: 兜底-国内
+    type: select
+    proxies: [DIRECT]
+  - name: 兜底-全局
+    type: select
+    proxies: [DIRECT]
+
+rules:
+  # 个性化 → 服务 mrs → 大类兜底 → 国内 → 全局
+  - RULE-SET,Claude_zdy / Domain,Ai-Claude
+  - RULE-SET,Claude / Domain,Ai-Claude
+  - RULE-SET,ChatGPT / Domain,Ai-ChatGPT
+  - RULE-SET,Ai-Catchall / Domain,兜底漏网 AI
+
+  - RULE-SET,Direct_zdy / Domain,兜底-国内
+  - RULE-SET,China / Domain,兜底-国内
+  - RULE-SET,China / IP,兜底-国内,no-resolve
+
+  - RULE-SET,Globe_zdy / Domain,兜底-全局
+  - RULE-SET,Globe / Domain,兜底-全局
+  - MATCH,兜底-全局
+
+rule-providers:
+  ip: &ip { type: http, interval: 86400, behavior: ipcidr, format: mrs }
+  domain: &domain { type: http, interval: 86400, behavior: domain, format: mrs }
+  class:
+    &class { type: http, interval: 86400, behavior: classical, format: text }
+
+  # —— 1) 个性化：*_zdy 排在同名 mrs 之前 ——
+  Claude_zdy / Domain:
+    {
+      <<: *class,
+      url: "https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/zdy/blackmatrix7/Claude_zdy.list",
+    }
+  # —— 2) 加强：各服务 meta mrs ——
+  Claude / Domain:
+    {
+      <<: *domain,
+      url: "https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geosite_anthropic.mrs",
+    }
+  ChatGPT / Domain:
+    {
+      <<: *domain,
+      url: "https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geosite_openai.mrs",
+    }
+
+  # —— 3a) 大类兜底（AI，排在精细 AI 之后）——
+  Ai-Catchall / Domain:
+    {
+      <<: *domain,
+      url: "https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geosite_category-ai-chat-not-cn.mrs",
+    }
+
+  # —— 3b) 国内兜底 ——
+  Direct_zdy / Domain:
+    {
+      <<: *class,
+      url: "https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/zdy/liandu2024/Direct_zdy.list",
+    }
+  China / Domain:
+    {
+      <<: *domain,
+      url: "https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geosite_cn.mrs",
+    }
+  China / IP:
+    {
+      <<: *ip,
+      url: "https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geoip_cn.mrs",
+    }
+
+  # —— 3c) 全局兜底 ——
+  Globe_zdy / Domain:
+    {
+      <<: *class,
+      url: "https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/zdy/zdy/Globe_zdy.list",
+    }
+  Globe / Domain:
+    {
+      <<: *domain,
+      url: "https://gh-proxy.com/raw.githubusercontent.com/luowenfu/Proxy_rule/refs/heads/main/mrs/geosite_geolocation-not-cn.mrs",
+    }
+
