@@ -1,5 +1,0 @@
-# UBI_zdy: 上游规则 − meta geosite/ubisoft
-# 来源: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/UBI/UBI.list
-# geosite差集: ubisoft
-DOMAIN-SUFFIX,ubisoft-orbit-savegames.s3.amazonaws.com
-DOMAIN-SUFFIX,ubisoft-uplay-savegames.s3.amazonaws.com

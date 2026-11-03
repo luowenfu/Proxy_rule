@@ -5,13 +5,11 @@
   减去 meta geosite/geoip 已覆盖条目（geosite 为空则全量），生成 zdy 文本。
 zdy 按条合并：以规则键（类型|主参数小写，去 no-resolve）合并本地与上游结果——
 上游新增并入；本地独有保留；两边都有用本地行（冲突以本地为准）。顺序：本地原顺序在前，再补上游新键。
-upstream-snapshots/zdy/<来源>/ 存本次纯上游计算结果（未与本地合并）。
-mrs 整文件 KEEP-LOCAL：本地与上次快照不同（本地改过）则保留本地；快照总是更新为本次上游。
+mrs：每次同步直接覆盖为上游（不手改 mrs）。
 来自已停用的 luowenfu/ios_rule_script 的 zdy 为纯本地自定义，不在 upstream.json 中，不同步。"""
-import json, os, re, sys, ipaddress, urllib.request
+import json, os, sys, ipaddress, urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 up = json.load(open(os.path.join(ROOT, "upstream.json"), encoding="utf-8"))
-snapdir = os.path.join(ROOT, "upstream-snapshots")
 META = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/%s/%s.list"
 _cache = {}
 
@@ -96,7 +94,7 @@ def build(rel, spec):
 
 fail = 0
 for rel, spec in up.items():
-    dst = os.path.join(ROOT, rel); snap = os.path.join(snapdir, rel)
+    dst = os.path.join(ROOT, rel)
     try:
         if isinstance(spec, str): data = fetch(spec)
         elif rel.startswith("zdy/"): data = build(rel, spec)
@@ -106,15 +104,13 @@ for rel, spec in up.items():
     if not data:
         print("EMPTY", rel); fail += 1; continue
     local = open(dst, "rb").read() if os.path.exists(dst) else None
-    old = open(snap, "rb").read() if os.path.exists(snap) else None
     if rel.startswith("zdy/") and not isinstance(spec, str):
         merged, added = merge(local, data)
         if merged != local:
             os.makedirs(os.path.dirname(dst), exist_ok=True); open(dst, "wb").write(merged); print("MERGE", rel, "+%d" % added)
         else: print("SAME", rel)
-    elif local is not None and local != data and old is not None and local != old:
-        print("KEEP-LOCAL", rel)
     elif local != data:
         os.makedirs(os.path.dirname(dst), exist_ok=True); open(dst, "wb").write(data); print("UPDATE", rel)
-    os.makedirs(os.path.dirname(snap), exist_ok=True); open(snap, "wb").write(data)
+    else:
+        print("SAME", rel)
 sys.exit(1 if fail == len(up) else 0)

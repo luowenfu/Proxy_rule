@@ -30,12 +30,11 @@ OpenClash / Mihomo 用的规则仓库（公开）。
 | `zdy/liandu2024/` | 有上游 [liandu2024/clash](https://github.com/liandu2024/clash) 的自定义 `.list`。 |
 | `zdy/zdy/` | **纯本地自定义**，无上游、不进 `upstream.json`（Crypto、Dev-GitHub、Globe、PT-Tracker、UltraMobile）。 |
 | `upstream.json` | 声明 `mrs/` 与可同步 `zdy/` 的来源。 |
-| `upstream-snapshots/` | 上次同步的上游快照（用于对比 / 合并）。 |
 | `scripts/sync.py` | 同步脚本；GitHub Actions 约每 3 天跑一次（也可手动 workflow_dispatch）。 |
 
 ## 同步规则
 
-- **mrs**：按 `upstream.json` 拉取；若本地文件与快照不同（说明改过），**整文件保留本地**，仍更新快照。
+- **mrs**：按 `upstream.json` 拉取，**每次直接覆盖**本地（不手改 mrs）。
 - **zdy（blackmatrix7 / liandu2024）**：
   - 声明了 `geosite`：用上游 list 对 meta 同名 geosite 做**差集**后再写入；
   - `geosite` 为空：上游 **全量**写入；
@@ -78,3 +77,4 @@ Adobe、Blizzard、Claude、EA、Epic、Instagram、Nintend、Nvidia、PayPal、
 
 **纯本地 `zdy/zdy/`**  
 Crypto、Dev-GitHub、Globe、PT-Tracker、UltraMobile
+

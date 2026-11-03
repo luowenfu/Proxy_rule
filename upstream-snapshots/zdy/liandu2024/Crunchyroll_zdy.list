@@ -1,5 +1,0 @@
-# Crunchyroll_zdy: 上游规则 − meta geosite(无对应，全量)
-# 来源: https://raw.githubusercontent.com/liandu2024/clash/main/list/Crunchyroll.list
-DOMAIN-SUFFIX,crunchyroll.com
-DOMAIN-SUFFIX,crunchyrollcdn.com
-DOMAIN-SUFFIX,crunchyrollsvc.com

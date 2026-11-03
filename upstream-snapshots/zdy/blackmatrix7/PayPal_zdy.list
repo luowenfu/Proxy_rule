@@ -1,6 +1,0 @@
-# PayPal_zdy: 上游规则 − meta geosite/paypal
-# 来源: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal.list
-# geosite差集: paypal
-DOMAIN-SUFFIX,paypal-mktg.com
-DOMAIN-SUFFIX,venmo.s3.amazonaws.com
-DOMAIN-KEYWORD,paypal

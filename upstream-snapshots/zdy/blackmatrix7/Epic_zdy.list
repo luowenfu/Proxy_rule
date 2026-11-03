@@ -1,4 +1,0 @@
-# Epic_zdy: 上游规则 − meta geosite/epicgames
-# 来源: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list
-# geosite差集: epicgames
-DOMAIN-SUFFIX,helpshift.com
