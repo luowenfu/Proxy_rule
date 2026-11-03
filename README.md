@@ -2,6 +2,25 @@
 
 OpenClash / Mihomo 用的规则仓库（公开）。
 
+## 分流策略（三级）
+
+配置里规则**从上到下**匹配，本仓库按「个性化 → 加强 → 兜底」三层组织：
+
+1. **个性化（最优先）**  
+   `服务名_zdy` → `zdy/.../服务名_zdy.list`  
+   你自己的补丁：旧规则相对 meta 多出来的域名，或纯自用条目。同一服务必须排在对应 mrs **前面**。
+
+2. **加强（各服务本体）**  
+   `服务名` → `mrs/geosite_*.mrs` / `geoip_*.mrs`（来自 MetaCubeX meta）  
+   有第三方上游的 zdy（`zdy/blackmatrix7/`、`zdy/liandu2024/`）会随上游同步后，再与本地按条合并，用于补强 meta 没收全的部分。
+
+3. **大类 / 最终兜底**  
+   - 大类示例：AI →「兜底漏网 AI」用 `category-ai-chat-!cn`（排在各精细 AI 规则之后）  
+   - 国内兜底：`Direct_zdy` + China（geosite/geoip cn）  
+   - 全局兜底：`Globe_zdy` + Globe（`geolocation-!cn`）
+
+可记成：**zdy 个性化 → 第三方加强 / meta 服务规则 → 大类与 China/Globe 兜底**。
+
 ## 目录
 
 | 路径 | 说明 |
@@ -21,7 +40,7 @@ OpenClash / Mihomo 用的规则仓库（公开）。
   - 声明了 `geosite`：用上游 list 对 meta 同名 geosite 做**差集**后再写入；
   - `geosite` 为空：上游 **全量**写入；
   - 与本地 **按条合并**：上游新增并入；本地多出来的保留；同一条冲突以**本地为准**。
-- **zdy/zdy/**：不同步，只手改。
+- **zdy/zdy/**：不同步上游，只手改。
 
 ## 在 YAML 里怎么引用
 
