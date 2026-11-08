@@ -66,3 +66,4 @@ DOMAIN-SUFFIX,ip2proxy.com
 DOMAIN-SUFFIX,vpnapi.io
 IP-CIDR,74.125.250.129/24,no-resolve
 DOMAIN-SUFFIX,l.google.com
+DOMAIN-SUFFIX,ippure.com
