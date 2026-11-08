@@ -78,3 +78,6 @@ Adobe、Blizzard、Claude、EA、Epic、Instagram、Nintend、Nvidia、PayPal、
 **纯本地 `zdy/zdy/`**  
 Crypto、Dev-GitHub、Globe、PT-Tracker、UltraMobile
 
+
+
+本地读写与推送测试：此说明由万事局局长追加。
