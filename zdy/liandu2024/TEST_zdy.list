@@ -1,5 +1,7 @@
 # TEST_zdy: 上游规则 − meta geosite(无对应，全量)
 # 来源: https://raw.githubusercontent.com/liandu2024/clash/main/list/Check.list
+DOMAIN-SUFFIX,ippure.com
+DOMAIN-SUFFIX,icanhazip.com
 GEOSITE,CATEGORY-SPEEDTEST
 DOMAIN-SUFFIX,ipjiance.com
 DOMAIN-SUFFIX,iping.cc
@@ -66,4 +68,3 @@ DOMAIN-SUFFIX,ip2proxy.com
 DOMAIN-SUFFIX,vpnapi.io
 IP-CIDR,74.125.250.129/24,no-resolve
 DOMAIN-SUFFIX,l.google.com
-DOMAIN-SUFFIX,ippure.com
